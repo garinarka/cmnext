@@ -4,13 +4,8 @@ import { withAccelerate } from '@prisma/extension-accelerate'
 const prisma = new PrismaClient().$extends(withAccelerate())
 
 async function main() {
-    const user = await prisma.user.create({
-        data: {
-            name: 'Alice',
-            email: 'alice@prisma.io',
-        },
-    })
-    console.log(user)
+    const users = await prisma.user.findMany()
+    console.log(users)
 }
 
 main()
