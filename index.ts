@@ -4,7 +4,13 @@ import { withAccelerate } from '@prisma/extension-accelerate'
 const prisma = new PrismaClient().$extends(withAccelerate())
 
 async function main() {
-    // ... you will write your Prisma ORM queries here
+    const user = await prisma.user.create({
+        data: {
+            name: 'Alice',
+            email: 'alice@prisma.io',
+        },
+    })
+    console.log(user)
 }
 
 main()
