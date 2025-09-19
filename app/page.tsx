@@ -1,15 +1,17 @@
-import { Button } from "@/components/ui/button";
+"use client";
+
+import { useState } from "react";
+import { UserForm } from "@/components/user-form";
+import { UserList } from "@/components/user-list";
 
 export default function Home() {
+  const [refresh, setRefresh] = useState(false);
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-[70vh] text-center">
-      <h1 className="text-4xl font-bold mb-4">
-        Selamat datang di MyApp 🚀
-      </h1>
-      <p className="text-gray-600 mb-6">
-        Next.js + TailwindCSS + shadcn/ui sudah siap!
-      </p>
-      <Button>Get Started</Button>
+    <div className="max-w-lg mx-auto space-y-8">
+      <h1 className="text-2xl font-bold">User Management</h1>
+      <UserForm onUserCreated={() => setRefresh(!refresh)} />
+      <UserList key={refresh.toString()} />
     </div>
   );
 }
